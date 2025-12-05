@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,11 +12,15 @@ public class Main2 : MonoBehaviour
     // Sprite가 어딨는지 모를때 UI에서 도형을 만들고
     // 그 SpriteRenderer안에 있는 이름을 누르면 그 경로로 이동한다
 
-    //public Player2 player;
-
+    //public GameObject player; // 클래스 멤버변수 : m 또는 _ 라고 컨벤션을 한다 주로
+    //public Player2 player; // 하나만 없애는 게 아니라 > 여러명이라면
+    public List<Player2> players = new List<Player2>();
+    public int[] ints = new int[4];
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        #region
+
         // 이제 코드상에서 구현을 해서 에디터에서 작업 없이 해보자
         GameObject go = new GameObject();// hierachy창에서 create Empty와 동일 > 빈 게임오브젝트 생성
                                          // play시에만 생김 > 동적 할당
@@ -49,7 +54,7 @@ public class Main2 : MonoBehaviour
 
         // go에다가 Player 컴퍼넌트를 붙여주세요
         //Player2 player = go.GetComponent<Player2>();
-
+#endregion
         CreatePlayer();
         CreatePlayer();
         CreatePlayer();
@@ -58,7 +63,11 @@ public class Main2 : MonoBehaviour
         CreatePlayer();
 
 
-
+        int index = Random.Range(0, 10);//Next(0,10)와 유사
+        // hidden으로 처리해서 안보이게 할 뿐
+        RemovePlayer(players[index]);// 안전하게 삭제가 된다
+        // 리소스 관리는 만든 곳에서 삭제한다. > 만드는 것도 따로, 삭제도 따로
+        // 실행만 Main에서
 
     }
     //모듈화 > 함수에 담는 것
@@ -71,6 +80,8 @@ public class Main2 : MonoBehaviour
         sr.color = Color.green;
         Player2 player = go.AddComponent<Player2>();
         player.level = 2;
+
+        players.Add(player);
 
         // 보이는 것은 Delete를 하면 되지 > 코드로는?
         //GameObject.Destroy(go); // 특정 게임오브젝트, 컴포넌트를 삭제하는 함수 > 즉시삭제
@@ -93,7 +104,11 @@ public class Main2 : MonoBehaviour
 
         // 인스턴스 관리
         // 어떻게 하면 이 객체들을 체계적으로 관리할 수 있을까
-
+        //this.player = go; //오류가 나는데? 
+        //지역변수와 멤버변수의 충돌 > this로 해결
+        //이는 간편화하고자 변수를 만들고 참조값으로 그걸 변경하는 식이다.
+        // 다른 함수에서 사용시에 멤버변수만 사용하겠다.는 편리한 점이 있다.
+        // 또 따로 getComponent를 반복하니 > 해당 타입의 객체를 미리 선언하는 방식으로 가자
 
 
 
@@ -157,23 +172,62 @@ public class Main2 : MonoBehaviour
         GameObject go = GameObject.Find("Player");
         //go.AddComponent<Player2>();
 
-        t += Time.deltaTime;
-        if(t > 3 && go != null)
-        {
-            go.SetActive(false);
-            t = 0;
+        //t += Time.deltaTime;
+        //if(t > 3 && go != null)
+        //{
+        //    go.SetActive(false);
+        //    t = 0;
 
-            GameObject.Destroy(go, 5);
-        }
+        //    GameObject.Destroy(go, 5);
+        //}
 
+
+        //인스턴스 관리법
+        //하나를 만들어 놓고 멤버변수로 사용케 한다
+        //player.hp > 못 가져오는데요??
+        //this.player.GetComponent<Player2>().hp++;//이런 식으로 가져와야 한다
+        // 그래서 값이 계속 올라가는 참사가.... > 공격이 될 수도 있고
+        // 하지만 GetComponent도 언제나 호출하기엔 부담스럽다
+        // 그래서 Component로 만들어서 그걸 관리케 한다
+        Player2 player3 = go.GetComponent<Player2>(); //주로 이렇게 활용하는 방식으로 해라
+        // 멤버 변수로 만들고 그걸 소환하는 방식으로 > 에디터에서 연결해서 사용하는 방법이 제일 낫다
+        //player3.hp++; // 이거 무시되는데요? 
+        // 멤버 삭제 
+        GameObject.Destroy(player3,3);
+        // Destroy를 해도 처음엔 완전히 지우는 게 아니라 참조주소는 그대로 들고 있고
+        // 대신 그 자리에 null을 넣어둔다. > 이를 fakeNull이라 한다
+
+        //if(player != null) //문제는 fakenull과 진짜null은 다른데
+        //                   // 오퍼레이터 > 연산자 오버로딩이 발생한다
+        //                   // != > 재정의 > 서로 다른 null도 정의할 수 있게
+        //                   // 그래서 fakeNull도 null처리가 된다
+        //{
+        //    GameObject go4 = player.gameObject;//이것은 null이다
+        //    player.hp++; // MissingReference 가 발생한다
+        //}
        
+        // player 1  player2
+        //  int id   int id
+        // 객체로 비교하면 별 의미가 없는건데 > 연산자 오버로딩을 통해 id끼리 비교하게 하는 방법
 
+        // 반복문 - while / for / foreach(배열에서 하나씩 꺼내는 형식)
+        foreach(Player2 p in players) // players 안에 있는 각각 추가된 요소를 
+                                      // Player2 타입의 p에 각각 넣어주세요
+        {
+            //p.hp++;
+            GameObject go5 = p.gameObject; // 삭제하는 걸 잘 기억해야함 > Missing 에러가 남
+           
 
-
-
+        }
+        //for(int i = 0; i < players.length ; i++) 이런 방식임
 
     }
-
+    // 생성과 삭제는 원래 다른 곳에서 해야한다 > 강제로 한 공간으로 정하고
+    private void RemovePlayer(Player2 player)
+    {
+        GameObject.Destroy(player);
+        players.Remove(player);
+    }
 
 
 

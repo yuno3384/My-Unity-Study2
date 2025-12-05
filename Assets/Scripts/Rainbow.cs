@@ -1,4 +1,4 @@
-using UnityEngine;
+using UnityEngine; // 만일 using문에 본 적 없는 것이 추가된다면 빌드시 오류가 날 수 있으니 그냥 지워라
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
@@ -104,7 +104,33 @@ public class NewMonoBehaviourScript : MonoBehaviour
         //    tr5.position = new Vector3(1, 0, 0);
         //    tr6.position = new Vector3(2, 0, 0);
         //    tr7.position = new Vector3(3, 0, 0);
-    }
+
+        int[] positions = { -3, -2, -1, 0, 1, 2, 3 };
+        Color[] colors = { Color.red, new Color(1f, 0.5f, 0f), Color.yellow, Color.green, Color.blue, new Color(0.29f, 0f, 0.51f), Color.magenta };
+
+        for (int i = 0; i < 7; i++)
+        {
+            GameObject go = new GameObject();
+            go.name = $"Square {i + 1}";
+            go.transform.position = new Vector3(positions[i], 0, 0);
+            SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+            sr.sprite = sprite;
+            sr.color = colors[i];
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
 
     // Update is called once per frame
     void Update()

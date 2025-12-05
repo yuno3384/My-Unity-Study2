@@ -28,18 +28,18 @@ public class Player2 : MonoBehaviour
         // 이번엔 이미 있는 객체라 가정하고 만들어보자
         // Main에서 선언하면 > Player가  행동하면 되잖아?
         GameObject go = gameObject; // 현재 내가 붙어있는, 기생하고 있는(부모가 되는) GameObject 가져오기
-        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-        //sr.sprite = sprite; 지금은 없으니까 일단 넘어가도록 하자
-        //sr.sprite = sprite;
-        sr.color = Color.blue;
+        //SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        ////sr.sprite = sprite; 지금은 없으니까 일단 넘어가도록 하자
+        ////sr.sprite = sprite;
+        //sr.color = Color.blue;
 
         // GameObject의 좌표를 0,0,0에서 5,0,0으로 바꿔보자
         //Transform tr = GameObject.Tra
         //Transform tr = go.GetComponent<Transform>();
-        Transform tr = transform;
-        // >  모든 GameObject는 기본적으로 Transform을 가지고 있으므로
-        // 따로 변수화 되어있는 것 > 현대 게임오브젝트의 트랜스폼 가져오기
-        tr.position = new Vector3(5, 0, 0);
+        //Transform tr = transform;
+        //// >  모든 GameObject는 기본적으로 Transform을 가지고 있으므로
+        //// 따로 변수화 되어있는 것 > 현대 게임오브젝트의 트랜스폼 가져오기
+        //tr.position = new Vector3(5, 0, 0);
         //tr.position = Vector3.zero; // zero(0,0,0) / left(-1,0,0) /right(1,0,0) 등등
         // Vector 3 : float값이 세개 모인 것 > 벡터가 생긴다 > 삼차원
         // Vector 2 : float값이 두개 모인 것 > 이차원
