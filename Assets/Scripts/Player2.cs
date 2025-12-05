@@ -1,8 +1,8 @@
-using System.Security.Cryptography;
+ï»¿using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.U2D;
-// player ½ºÅ©¸³Æ®¸¦ ¸¸µé¾îÁÖ¼¼¿ä
-// ¸â¹öº¯¼ö·Î 
+// player ìŠ¤í¬ë¦½íŠ¸ë¥¼ ë§Œë“¤ì–´ì£¼ì„¸ìš”
+// ë©¤ë²„ë³€ìˆ˜ë¡œ 
 //int level = 1
 //int hp = 100
 //int damage = 10 
@@ -17,7 +17,7 @@ public class Player2 : MonoBehaviour
     public int hp = 100;
     public int damage = 10;
 
-    // ÇÏÀÌ¾î¶óÅ° »ó¿¡ ÇÃ·¹ÀÌ¾î°¡ ÀÖ´ÂÁö ¾ø´ÂÁö °ªÀ» °¡Á®¿Â´Ù
+    // í•˜ì´ì–´ë¼í‚¤ ìƒì— í”Œë ˆì´ì–´ê°€ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ ê°’ì„ ê°€ì ¸ì˜¨ë‹¤
 
 
 
@@ -25,31 +25,31 @@ public class Player2 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // ÀÌ¹ø¿£ ÀÌ¹Ì ÀÖ´Â °´Ã¼¶ó °¡Á¤ÇÏ°í ¸¸µé¾îº¸ÀÚ
-        // Main¿¡¼­ ¼±¾ğÇÏ¸é > Player°¡  Çàµ¿ÇÏ¸é µÇÀİ¾Æ?
-        GameObject go = gameObject; // ÇöÀç ³»°¡ ºÙ¾îÀÖ´Â, ±â»ıÇÏ°í ÀÖ´Â(ºÎ¸ğ°¡ µÇ´Â) GameObject °¡Á®¿À±â
+        // ì´ë²ˆì—” ì´ë¯¸ ìˆëŠ” ê°ì²´ë¼ ê°€ì •í•˜ê³  ë§Œë“¤ì–´ë³´ì
+        // Mainì—ì„œ ì„ ì–¸í•˜ë©´ > Playerê°€  í–‰ë™í•˜ë©´ ë˜ì–ì•„?
+        GameObject go = gameObject; // í˜„ì¬ ë‚´ê°€ ë¶™ì–´ìˆëŠ”, ê¸°ìƒí•˜ê³  ìˆëŠ”(ë¶€ëª¨ê°€ ë˜ëŠ”) GameObject ê°€ì ¸ì˜¤ê¸°
         //SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
-        ////sr.sprite = sprite; Áö±İÀº ¾øÀ¸´Ï±î ÀÏ´Ü ³Ñ¾î°¡µµ·Ï ÇÏÀÚ
+        ////sr.sprite = sprite; ì§€ê¸ˆì€ ì—†ìœ¼ë‹ˆê¹Œ ì¼ë‹¨ ë„˜ì–´ê°€ë„ë¡ í•˜ì
         ////sr.sprite = sprite;
         //sr.color = Color.blue;
 
-        // GameObjectÀÇ ÁÂÇ¥¸¦ 0,0,0¿¡¼­ 5,0,0À¸·Î ¹Ù²ãº¸ÀÚ
+        // GameObjectì˜ ì¢Œí‘œë¥¼ 0,0,0ì—ì„œ 5,0,0ìœ¼ë¡œ ë°”ê¿”ë³´ì
         //Transform tr = GameObject.Tra
         //Transform tr = go.GetComponent<Transform>();
         //Transform tr = transform;
-        //// >  ¸ğµç GameObject´Â ±âº»ÀûÀ¸·Î TransformÀ» °¡Áö°í ÀÖÀ¸¹Ç·Î
-        //// µû·Î º¯¼öÈ­ µÇ¾îÀÖ´Â °Í > Çö´ë °ÔÀÓ¿ÀºêÁ§Æ®ÀÇ Æ®·£½ºÆû °¡Á®¿À±â
+        //// >  ëª¨ë“  GameObjectëŠ” ê¸°ë³¸ì ìœ¼ë¡œ Transformì„ ê°€ì§€ê³  ìˆìœ¼ë¯€ë¡œ
+        //// ë”°ë¡œ ë³€ìˆ˜í™” ë˜ì–´ìˆëŠ” ê²ƒ > í˜„ëŒ€ ê²Œì„ì˜¤ë¸Œì íŠ¸ì˜ íŠ¸ëœìŠ¤í¼ ê°€ì ¸ì˜¤ê¸°
         //tr.position = new Vector3(5, 0, 0);
-        //tr.position = Vector3.zero; // zero(0,0,0) / left(-1,0,0) /right(1,0,0) µîµî
-        // Vector 3 : float°ªÀÌ ¼¼°³ ¸ğÀÎ °Í > º¤ÅÍ°¡ »ı±ä´Ù > »ïÂ÷¿ø
-        // Vector 2 : float°ªÀÌ µÎ°³ ¸ğÀÎ °Í > ÀÌÂ÷¿ø
-        // º¤ÅÍ : °øÁß¿¡ ºØ ¶°ÀÖ´Ù(ÁÂÇ¥ °³³ä) , ¹æÇâ °³³ä
-        // ÀÌ°Å »ç¿ëÀÌ ¿µ¼øÀ§, Á¦ÀÏ ¿ì¼±½Ã > ·ÎÄÃ ÁÂÇ¥°è, ¿ùµå ÁÂÇ¥°è¸¦ Àß ±¸ºĞÇØ¾ß
-        // ÀÌ·± °Íµµ ÆĞ·±Æ®, Â÷ÀÏµå·Î ¸¸µé ¼ö ÀÖ´Ù.
-        // UI³ª Ä³¸¯ÅÍ ÆÄÃ÷ µîµî
+        //tr.position = Vector3.zero; // zero(0,0,0) / left(-1,0,0) /right(1,0,0) ë“±ë“±
+        // Vector 3 : floatê°’ì´ ì„¸ê°œ ëª¨ì¸ ê²ƒ > ë²¡í„°ê°€ ìƒê¸´ë‹¤ > ì‚¼ì°¨ì›
+        // Vector 2 : floatê°’ì´ ë‘ê°œ ëª¨ì¸ ê²ƒ > ì´ì°¨ì›
+        // ë²¡í„° : ê³µì¤‘ì— ë¶• ë– ìˆë‹¤(ì¢Œí‘œ ê°œë…) , ë°©í–¥ ê°œë…
+        // ì´ê±° ì‚¬ìš©ì´ ì˜ìˆœìœ„, ì œì¼ ìš°ì„ ì‹œ > ë¡œì»¬ ì¢Œí‘œê³„, ì›”ë“œ ì¢Œí‘œê³„ë¥¼ ì˜ êµ¬ë¶„í•´ì•¼
+        // ì´ëŸ° ê²ƒë„ íŒ¨ëŸ°íŠ¸, ì°¨ì¼ë“œë¡œ ë§Œë“¤ ìˆ˜ ìˆë‹¤.
+        // UIë‚˜ ìºë¦­í„° íŒŒì¸  ë“±ë“±
 
 
-        // Ã£¾Æ¼­ ¾²´Â °Í
+        // ì°¾ì•„ì„œ ì“°ëŠ” ê²ƒ
         
 
 
@@ -60,7 +60,7 @@ public class Player2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()// Âü°í·Î ¾È ºÙ¾î ÀÖ´Â °Ç ±âº»ÀûÀ¸·Î private
+    void Update()// ì°¸ê³ ë¡œ ì•ˆ ë¶™ì–´ ìˆëŠ” ê±´ ê¸°ë³¸ì ìœ¼ë¡œ private
     {
         
     }

@@ -1,4 +1,4 @@
-using UnityEngine; // ¸¸ÀÏ using¹®¿¡ º» Àû ¾ø´Â °ÍÀÌ Ãß°¡µÈ´Ù¸é ºôµå½Ã ¿À·ù°¡ ³¯ ¼ö ÀÖÀ¸´Ï ±×³É Áö¿ö¶ó
+ï»¿using UnityEngine; // ë§Œì¼ usingë¬¸ì— ë³¸ ì  ì—†ëŠ” ê²ƒì´ ì¶”ê°€ëœë‹¤ë©´ ë¹Œë“œì‹œ ì˜¤ë¥˜ê°€ ë‚  ìˆ˜ ìˆìœ¼ë‹ˆ ê·¸ëƒ¥ ì§€ì›Œë¼
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
