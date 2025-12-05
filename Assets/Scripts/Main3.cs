@@ -66,7 +66,7 @@ public class Main : MonoBehaviour
 
             t = 0;
 
-            OnClickButton();
+            Test();
         }
     }
     //public을 써야 inspector에서 노출이 안된다 > 직렬화
@@ -90,8 +90,9 @@ public class Main : MonoBehaviour
     // 두더지 게임
     void Test()
     {
-        
-        Debug.LogAssertion("버튼 눌렀음");
+
+        //Debug.LogAssertion("버튼 눌렀음");
+        Debug.LogAssertion("두더지 이동중");
 
         //버튼의 크기(RectTransform) 구하기 > 에디터에서 Canvas것을 구하기
         RectTransform rt = testButton.GetComponent<RectTransform>();
