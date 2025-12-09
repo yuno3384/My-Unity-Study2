@@ -108,7 +108,12 @@ public class Player4 : MonoBehaviour
         // 2. 방향을 나타내려면 > Vector
         Vector3 moveDirection = Vector3.zero;
 
-        
+
+        if (_state == State.Skill) // state Pattern > 상태 패턴 
+        {
+            return;
+        }
+
         if (Input.GetKey(KeyCode.W))
         {
             //_animator.Play("UpWalk");
@@ -150,6 +155,7 @@ public class Player4 : MonoBehaviour
         }
         else
         {
+            
             _state = State.Idle;
         }
         
@@ -234,12 +240,12 @@ public class Player4 : MonoBehaviour
             }
             void OnAttackEnded() 
             {
-                //_state = State.Idle;
-                isAttcked = true;
-                if (isAttcked)
-                {
-                    _state = State.Idle;
-                }
+                _state = State.Idle;
+                //isAttcked = true;
+                //if (isAttcked)
+                //{
+                //    _state = State.Idle;
+                //}
 
 
             }
