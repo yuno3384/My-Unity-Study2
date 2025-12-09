@@ -1,6 +1,6 @@
 ﻿using UnityEngine; // 만일 using문에 본 적 없는 것이 추가된다면 빌드시 오류가 날 수 있으니 그냥 지워라
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Rainbow2 : MonoBehaviour
 {
     public Sprite sprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -133,8 +133,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         }
 
     // Update is called once per frame
-    void Update()
-    {
+    //void Update()
+    //{
         
-    }
+    //}
 }

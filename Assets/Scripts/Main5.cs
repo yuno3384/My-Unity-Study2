@@ -3,12 +3,15 @@
 public class Main5 : MonoBehaviour
     // inputAction : 맵핑을 하여서 무슨 키를 누르면 어디로 이동하게 끔 하는 것
     // 하지만 대부분의 게임사는 아직까지 레거시를 사용한다
-    // 물론 멀티 플랫폼이면 요즘 방식을 쓰겠지만
-
+    // 물론 멀티 플랫폼이면 요즘 방식을 쓰겠지만    
 {
+     
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GameObject go = new GameObject();
+        Player player = go.GetComponent<Player>();
         
     }
     // 매 프레임마다 업데이트
@@ -74,10 +77,10 @@ public class Main5 : MonoBehaviour
         //if (Input.GetKey(KeyCode.D))
         //{
         //}
-        // GetAxis("Horizantal") > 수치값 반환 > 0부터 1사이의 수 
-        Debug.Log($"가로 : {Input.GetAxis("Horizontal")}");
-        Debug.Log($"세로 : {Input.GetAxis("Vertical")}");
-        // Project setting > Input settings
+        //// GetAxis("Horizantal") > 수치값 반환 > 0부터 1사이의 수 
+        //Debug.Log($"가로 : {Input.GetAxis("Horizontal")}");
+        //Debug.Log($"세로 : {Input.GetAxis("Vertical")}");
+        //// Project setting > Input settings
 
 
 
