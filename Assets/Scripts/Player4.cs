@@ -137,6 +137,14 @@ public class Player4 : MonoBehaviour
             _dir = Dir.Right;
             moveDirection += Vector3.right;
         }
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            //_animator.Play("SideWalk"); // 반대방향으로 움직이게 하고 싶어 > flip 이 필요해
+            //_spriteRenderer.flipX = false;
+            _state = State.Skill;
+            //_dir = Dir.Right;
+            //moveDirection += Vector3.right;
+        }
         else
         {
             _state = State.Idle;
@@ -167,6 +175,7 @@ public class Player4 : MonoBehaviour
                     _animator.Play("SideIdle");
                     _spriteRenderer.flipX = false;
                     break;
+
                 default:
                     break;
             }
@@ -195,10 +204,31 @@ public class Player4 : MonoBehaviour
                         break;
                 }
             
+
         }
+        // 자 이제 공격을 해보자
         else if (_state == State.Skill)
         {
-            
+            switch (_dir)
+            {
+                case Dir.Up:
+                    _animator.Play("UpAttack");
+                    break;
+                case Dir.Down:
+                    _animator.Play("DownAttack");
+                    break;
+                case Dir.Left:
+                    _animator.Play("SideAttack");
+                    _spriteRenderer.flipX = true;
+                    break;
+                case Dir.Right:
+                    _animator.Play("SideAttack");
+                    _spriteRenderer.flipX = false;
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
