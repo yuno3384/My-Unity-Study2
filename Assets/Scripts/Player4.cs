@@ -229,6 +229,13 @@ public class Player4 : MonoBehaviour
                 default:
                     break;
             }
+
+            void OnAttackEnded() 
+            {
+                _state = State.Idle;
+            }
+
+
         }
     }
 }
