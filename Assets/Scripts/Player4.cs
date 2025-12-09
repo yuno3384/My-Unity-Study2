@@ -28,6 +28,9 @@ public class Player4 : MonoBehaviour
     float _speed = 5f;
 
 
+    // 특정 요건에 따라 동작을 이어지게 하는 것 > 그것이 플래그(깃발세우기) > 끝날때 까지 못 움직이게
+    bool isAttcked = false;
+
     //int stringToSideAttackHash = Animator.StringToHash("SideAttack");// 문자를 어떤 숫자로 변환
     //  보통은 Util 같은 곳에 넣어서 관리한다 > public으로 > 거기서 가져와서 한다 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -229,10 +232,16 @@ public class Player4 : MonoBehaviour
                 default:
                     break;
             }
-
             void OnAttackEnded() 
             {
-                _state = State.Idle;
+                //_state = State.Idle;
+                isAttcked = true;
+                if (isAttcked)
+                {
+                    _state = State.Idle;
+                }
+
+
             }
 
 
