@@ -238,19 +238,21 @@ public class Player4 : MonoBehaviour
                 default:
                     break;
             }
-            void OnAttackEnded() 
-            {
-                _state = State.Idle;
-                //isAttcked = true;
-                //if (isAttcked)
-                //{
-                //    _state = State.Idle;
-                //}
-
-
-            }
+            
 
 
         }
+       
+
+    }
+
+    void OnAttackEnded()
+    {
+        _state = State.Idle;
+        //isAttcked = true;
+        //if (isAttcked)
+        //{
+        //    _state = State.Idle;
+        //}
     }
 }
